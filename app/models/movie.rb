@@ -34,7 +34,7 @@ class Movie < ActiveRecord::Base
     end
   end
   
-  def create_from_tmdb
+  def create_from_tmdb(hash)
     
   end
 end

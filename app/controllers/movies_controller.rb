@@ -76,9 +76,10 @@ class MoviesController < ApplicationController
     end
   end
   def add_tmdb
-    movie = {params[:tmdb_id] => :id}
-    Movie.create!(movie)
-    flash[:notice] = "#{params[:tmdb_id]} was successfully created."
+    @movies= create_from_tmdb(params[:tmdb_movies])
+    
+    hash = new.Hash
+    hash[:tmdb_movies] = 1
     redirect_to movies_path
 end
 

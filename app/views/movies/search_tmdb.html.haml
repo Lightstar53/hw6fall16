@@ -1,23 +1,25 @@
-%h1 Search Results:
+%h1 The following movies containing '#{params[:search_terms]}' were found on TMDb
 
 - if @movies.empty?
   %p No results were found
 
-%table#movies
-  %thead
-    %tr
-      %th Movie Title
-      %th Rating
-      %th Release Date
-      %th Select
-  %tbody
-    - @movies.each do |movie|
+= form_tag :action => 'add_tmdb' do
+  %table#movies
+    %thead
       %tr
-        %td= movie[:title]
-        %td= movie[:rating]
-        %td= movie[:release_date]
-        %td=check_box_tag "tmdb_movies[#{movie[:tmdb_id]}]"
-          
-= submit_tag 'Add Selected Movies', new_movie_path
+        %th Movie Title
+        %th Rating
+        %th Release Date
+        %th Select
+    %tbody
+      - @movies.each do |movie|
+        %tr
+          %td= movie[:title]
+          %td= movie[:rating]
+          %td= movie[:release_date]
+          %td=check_box_tag "checkbox[#{movie[:tmdb_id]}]"
+            
+  = submit_tag 'Add Selected Movies', :id => 'movies_button'
+  
 = link_to 'Return to movie list', movies_path
   
