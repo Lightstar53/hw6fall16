@@ -6,3 +6,4 @@ Given I have added a movie with title "Argo" and rating "R"
 
 When I have visited the Details about "Argo" page
 Then I should see "Details about Argo"
+

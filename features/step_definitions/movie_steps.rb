@@ -31,7 +31,7 @@ Given /^I am on the RottenPotatoes home page$/ do
  Then /^(?:|I )should see "([^"]*)"$/ do |text|
     expect(page).to have_content(text)
  end
-
+ 
  When /^I have edited the movie "(.*?)" to change the rating to "(.*?)"$/ do |movie, rating|
   click_on "Edit"
   select rating, :from => 'Rating'
