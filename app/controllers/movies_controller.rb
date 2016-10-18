@@ -81,6 +81,6 @@ class MoviesController < ApplicationController
     hash = new.Hash
     hash[:tmdb_movies] = 1
     redirect_to movies_path
-end
+  end
 
 end
