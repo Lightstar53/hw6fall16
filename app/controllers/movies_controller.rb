@@ -35,6 +35,7 @@ class MoviesController < ApplicationController
 
   def new
     # default: render 'new' template
+    @movie = Movie.new
   end
 
   def create
@@ -62,7 +63,23 @@ class MoviesController < ApplicationController
   end
   
   def search_tmdb
+    if params[:search_terms] == "" or params[:search_terms] == nil
+      flash[:notice] = "Need input."
+      redirect_to movies_path
+      return
+    end
     @movies=Movie.find_in_tmdb(params[:search_terms])
+    
+    if @movies.empty?
+      flash[:notice] = "'#{params[:search_terms]}' was not found in TMDb."
+      redirect_to movies_path
+    end
   end
+  def add_tmdb
+    movie = {params[:tmdb_id] => :id}
+    Movie.create!(movie)
+    flash[:notice] = "#{params[:tmdb_id]} was successfully created."
+    redirect_to movies_path
+end
 
 end

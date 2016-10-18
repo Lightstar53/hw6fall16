@@ -1,0 +1,23 @@
+%h1 Search Results:
+
+- if @movies.empty?
+  %p No results were found
+
+%table#movies
+  %thead
+    %tr
+      %th Movie Title
+      %th Rating
+      %th Release Date
+      %th Select
+  %tbody
+    - @movies.each do |movie|
+      %tr
+        %td= movie[:title]
+        %td= movie[:rating]
+        %td= movie[:release_date]
+        %td=check_box_tag "tmdb_movies[#{movie[:tmdb_id]}]"
+          
+= submit_tag 'Add Selected Movies', new_movie_path
+= link_to 'Return to movie list', movies_path
+  
